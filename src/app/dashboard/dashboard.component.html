@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <span class='logoBg'>Application Logo</span>
+  <span class="example-fill-remaining-space">
+    <mat-form-field class="example-form-field" >
+      <input matInput type="search" placeholder="search" >
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field></span>
+  <div class='user'>
+    <button mat-icon-button mat-flat-button [matMenuTriggerFor]="menu" color='primary'> <mat-icon class="menu">face</mat-icon>&nbsp;&nbsp;User</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Logout</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-nav-list>
+      {{navigationItems['applicationName']}}
+      <a *ngFor='let nav of navigationItems; let i=index'  class='mat-divider' mat-list-item (click)="gotoPage(nav)"  >{{nav.applicationName}} &nbsp;
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    
+      <div class="row page-titles">
+          <div class="col-md-5 col-8 align-self-center">
+             
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"> <h3 class="text-themecolor">Dashboard</h3></li>
+                  <li *ngIf='pageTitle' class="breadcrumb-item active">{{pageTitle}}</li>
+              </ol>
+          </div>
+           
+      </div>
+<app-crew-service [getData]='postData' [close]='closeFlag'></app-crew-service>
+    <!-- <router-outlet></router-outlet> -->
+  </mat-drawer-content>
+</mat-drawer-container>
